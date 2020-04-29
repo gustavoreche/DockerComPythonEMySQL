@@ -3,6 +3,7 @@ version: "3.4"
 networks:
   banco:
   web:
+  fila:
 
 services:
   db:
@@ -41,5 +42,25 @@ services:
     networks: 
       - web
       - banco
+      - fila
     depends_on: 
       - db
+      - filaService
+
+  filaService:
+    image: redis:3.2
+    container_name: "containerFila"
+    networks:
+      - fila
+
+  worker:
+    image: python:3.6
+    container_name: "containerWorker"
+    volumes:
+      - ./worker:/worker
+    working_dir: /worker
+    command: bash ./app.sh
+    networks:
+      - fila
+    depends_on:
+      - filaService
