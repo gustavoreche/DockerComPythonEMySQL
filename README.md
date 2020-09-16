@@ -42,6 +42,8 @@ Se o seu ambiente for linux, seguem os comandos:
 - Lembrando que, os diretórios "app", "nginx", "scripts", e "web" tem que estar no mesmo diretório que o arquivo "docker-compose.yml"
 
 - Execute o comando abaixo para inicializar os containers
+
+<b>- OBSERVAÇÃO: O banco de dados que o projeto irá executar, será executado na porta 8080. Caso tenha algum serviço executando nesta porta, mude a porta no projeto ou mude a porta do serviço do seu ambiente, senão o projeto não funcionará.</b>
   
   docker-compose up --build -V
   
